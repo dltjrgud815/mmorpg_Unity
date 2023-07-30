@@ -6,11 +6,19 @@ using UnityEngine;
 public class Managers : MonoBehaviour
 {
     private static Managers s_instance; // Singleton
-    public static Managers Instance { get {Init(); return s_instance; } }
+    private static Managers Instance { get {Init(); return s_instance; } }
 
+    private InputManager _input = new InputManager();
+    public static InputManager Input { get { return Instance._input; } }
+    
     private void Start()
     {
         Init();
+    }
+
+    private void Update()
+    {
+        _input.OnUpdate();
     }
 
     private static void Init()
